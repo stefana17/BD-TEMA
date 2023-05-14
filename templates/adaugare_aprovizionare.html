@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Adaugare Aprovizionare {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/acasa.css' %}">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 200%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <div class="topnav">
+        <a class="active" href="#">Adaugare Aprovizionare</a>
+        <a href="{% url 'acasa' %}">Inapoi acasa</a>
+    </div>
+    <div class="container">
+        <div style="margin-left: 40%;">
+            <form method="post">
+                <h1 style="margin-left: 8%">Adaugare Aprovizionare</h1>
+                {% csrf_token %}
+                <br><br>
+                <p>{{ form.data_aprovizionare.label_tag }} {{ form.data_aprovizionare }}</p>
+                <p>{{ form.pret_aprovizionare.label_tag }} {{ form.pret_aprovizionare }}</p>
+                <p>{{ form.cantitate_aprovizionare.label_tag }} {{ form.cantitate_aprovizionare }}</p>
+                <button type="submit" class="button">Submit</button>
+            </form>
+        </div>
+    </div>
+    {% for error in form.data_aprovizionare.errors %}
+        {% if error != "Acest camp este obligatoriu." %}
+            <p id="error-message" class="error-popup">{{ error }}</p>
+        {% endif %}
+    {% endfor %}
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+        setTimeout(function () {
+            document.getElementById("error-message").remove();
+        }, 3000);
+    </script>
+{% endblock %}

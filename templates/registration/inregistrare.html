@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/inregistrare.css' %}">
+    </head>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 150%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <form method="post" action="{% url 'inregistrare_magazin' %}">
+        <h1>Inregistrare</h1>
+        {% csrf_token %}
+        <div class="row-align">
+            <div style="width: 50%;">
+                <label for="firstname"></label>
+                <input type="text" name="prenume" placeholder="Prenume" pattern="[A-Za-z ]{2,}" required
+                       oninvalid="showErrorPopup('Introduce un prenume valid.');">
+            </div>
+            <div style="width: 50%;">
+                <label for="lastname"></label>
+                <input type="text" name="nume" placeholder="Nume" pattern="[A-Za-z ]{2,}" required
+                       oninvalid="showErrorPopup('Introduce un nume valid.');">
+            </div>
+        </div>
+        <div class="row-align">
+            <div style="width: 40%;">
+                <label for="street"></label>
+                <input type="text" name="strada" placeholder="Strada" pattern="[A-Za-z ]{2,}" required
+                       oninvalid="showErrorPopup('Introduce o strada valida.');">
+            </div>
+            <div style="width: 27%;">
+                <label for="number"></label>
+                <input type="text" name="numar" placeholder="Numar" pattern="^[0-9]+$" required
+                       oninvalid="showErrorPopup('Introduce un numar valid.');">
+            </div>
+            <div style="width: 33%;">
+                <label for="city"></label>
+                <input type="text" name="oras" placeholder="Oras" pattern="[A-Za-z ]{2,}" required
+                       oninvalid="showErrorPopup('Introduce un oras valid.');">
+            </div>
+        </div>
+        <div class="row-align">
+            <div style="width: 65%;">
+                <label for="email"></label>
+                <input type="text" name="email" placeholder="Email" pattern="[a-z0-9._%-]+@[a-z0-9._%-]+\.[a-z]{2,4}"
+                       oninvalid="showErrorPopup('Introduce o adresa de email valida.');"
+                       required>
+            </div>
+            <div style="width: 35%;">
+                <label for="phone"></label>
+                <input type="text" name="telefon" placeholder="Telefon" pattern="^[0-9]{10}$" required
+                       oninvalid="showErrorPopup('Introduce un numar de telefon valid.');">
+            </div>
+        </div>
+        <div class="row-align">
+            <div style="width: 50%;">
+                <label for="username"></label>
+                <input type="text" name="nume_utilizator" placeholder="Nume utilizator" pattern="^[a-zA-Z_0-9]*$" required
+                       oninvalid="showErrorPopup('Numele de utilizitor trebuie sa contina doar litere si numere. Spatiile nu sunt permise.');">
+            </div>
+            <div style="width: 48%;">
+                <label for="password"></label>
+                <input type="password" name="parola" id="password" placeholder="Parola"
+                       pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%*_])[a-zA-Z0-9!@#$%*_]{8,}$" required
+                       oninvalid="showErrorPopup('Parola trebuie sa contina macar 8 caractere, o litera, o cifra si un caracter special(!, @, #, $, %, *, _).');">
+            </div>
+
+        </div>
+        <br>
+        <hr>
+        <input type="submit" value="Inregistrare">
+    </form>
+    <script>
+        function showErrorPopup(message) {
+            // Create the pop-up element
+            let popup = document.createElement("div");
+            popup.classList.add("error-popup");
+            popup.innerHTML = message;
+
+            // Add the pop-up to the page
+            document.body.appendChild(popup);
+
+            // Remove the pop-up after 3 seconds
+            setTimeout(function () {
+                document.body.removeChild(popup);
+            }, 3000);
+        }
+    </script>
+{% endblock %}

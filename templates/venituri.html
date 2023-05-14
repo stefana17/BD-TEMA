@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Venituri {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/venituri.css' %}">
+    </head>
+    <div class="topnav">
+        <a class="active" href="#">Venituri</a>
+        <a href="{% url 'acasa' %}">Inapoi acasa</a>
+    </div>
+    <style>
+        table {
+            border: 1px solid;
+            width: 90%;
+        }
+
+        th, td {
+            border: 1px solid;
+            text-align: center;
+            padding: 5px;
+        }
+
+        th {
+            background-color: #eb4888;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: lightpink;
+        }
+
+        p {
+            font-size: 25px;
+        }
+
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 150%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <div style="margin-left: 10%;">
+        <h1 style="margin-left: 38%">Tabela Venituri</h1>
+        <table>
+            <tr>
+                <th>Total investit</th>
+                <th>Total vandut</th>
+                <th>Profit brut</th>
+                <th>Profit net</th>
+                <th>Taxe</th>
+            </tr>
+            {% for venit in venituri %}
+                <tr>
+                    <td>{{ venit.0 }}</td>
+                    <td>{{ venit.1 }}</td>
+                    <td>{{ venit.2 }}</td>
+                    <td>{{ venit.3 }}</td>
+                    <td>{{ venit.4 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <div style="margin-left: 10%;">
+            <h1 style="margin-left: 30%">STATISTICI</h1>
+            <p>Cel mai fidel client: {{ client_fidel }}</p>
+            <p>Cel mai cumparat produs: {{ produs_cumparat }}</p>
+            <p>Produs dat spre vanzare in cantitatea cea mai mare: {{ produs_vanzare_cant_mare }}</p>
+            <p>Numele clientilor care au primit tort ca bonus: {{ bonus_tort }}</p>
+            <p>Numele clientilor care stau la bloc: {{ clienti_bloc }}</p>
+            {% comment %}<p>Numarul de produse care au pretul in intervalul 0, 50 si numarul de produse care au pretul in intervalul 51, 100: {{ produse_interval }}</p>{% endcomment %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Adaugare Produs {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/acasa.css' %}">
+    </head>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 220%;
+            background-repeat: no-repeat;
+        }
+        p{
+            font-family: Brush Script MT, cursive;
+            font-size: 22px;
+        }
+    </style>
+    {% if errors %}
+        <p>{{ errors }}</p>
+        <a href="{% url 'adaugare_produs' %}"><input type="button" class="button" value="Reincearca sa adaugi produsul"></a>
+    {% else %}
+        <div class="topnav">
+            <a class="active" href="#">Adaugare Produs</a>
+            <a href="{% url 'acasa' %}">Inapoi acasa</a>
+        </div>
+        <div class="container">
+            <div style="margin-left: 40%;">
+                <form method="POST">
+                    <h1 style="margin-left: 8%">Adaugare Produs</h1>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            <br>
+                            {{ field.as_widget }}
+                            {% for error in field.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                   <button type="submit" class="button">Submit</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

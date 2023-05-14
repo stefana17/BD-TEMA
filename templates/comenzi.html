@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Comenzi {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/comenzi.css' %}">
+    </head>
+    <div class="topnav">
+        <a class="active" href="#">Comenzi</a>
+        <a href="{% url 'acasa' %}">Inapoi acasa</a>
+    </div>
+    <style>
+        table {
+            border: 1px solid;
+            width: 90%;
+        }
+
+        th, td {
+            border: 1px solid;
+            text-align: center;
+            padding: 5px;
+        }
+
+        th {
+            background-color: #eb4888;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: lightpink;
+        }
+
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 160%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <div style="margin-left: 10%;">
+        <h1 style="margin-left: 38%">Tabela Comenzi</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Pret comanda</th>
+                <th>Data comanda</th>
+                <th>Client</th>
+                <th>Bonus</th>
+            </tr>
+            {% for comanda in comenzi %}
+                <tr>
+                    <td>{{ comanda.0 }}</td>
+                    <td>{{ comanda.1 }}</td>
+                    <td>{{ comanda.2 }}</td>
+                    <td>{{ comanda.3 }}</td>
+                    <td>{{ comanda.4 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

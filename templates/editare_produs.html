@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Editare Produs {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/editare_produs.css' %}">
+    </head>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 220%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <div class="topnav">
+        <a class="active" href="#" style="font-family: Brush Script MT, cursive">Editare Produs</a>
+        <a href="{% url 'acasa' %}" style="font-family: Brush Script MT, cursive">Inapoi acasa</a>
+    </div>
+    <h1> {{ product_name }} </h1>
+    <div style="margin-left: 40%;">
+        <form method="post">
+            {% csrf_token %}
+            <br>
+            <p>Nume Produs Vechi: {{ nume_produs }}</p>
+            <p>Pret Produs Vechi: {{ pret_produs }}</p>
+            {{ form.as_p }}
+            <button type="submit" class="button">Save</button>
+        </form>
+    </div>
+
+{% endblock %}

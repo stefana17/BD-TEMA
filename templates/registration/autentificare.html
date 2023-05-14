@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Login {% endblock %}
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/autentificare.css' %}">
+    </head>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 150%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    {% if errors %}
+        <p class="error-popup"><b>Numele de utilizator si parola nu corespund. Te rog incearca din nou!</b></p>
+    {% endif %}
+    <div class="box">
+        <form class="login" method="post" action="{% url 'autentificare_magazin' %}">
+            {% csrf_token %}
+            <br>
+            <br>
+            <br>
+            <label for="username"></label>
+            <input type="text" name="nume_utilizator" placeholder="Nume utilizator" required>
+            <br>
+            <label for="password"></label>
+            <input type="password" id="password" name="parola" placeholder="Parola" required>
+            <br>
+            <br>
+            <input type="submit" value="Autentifica-te">
+        </form>
+        <br>
+        <br>
+        <br>
+        <form action="/inregistrare">
+            <input type="submit" id="create" value="Creaza un nou cont">
+        </form>
+    </div>
+
+{% endblock %}

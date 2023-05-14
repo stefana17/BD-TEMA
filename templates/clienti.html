@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Clienti {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/clienti.css' %}">
+    </head>
+    <div class="topnav">
+        <a class="active" href="#">Clienti</a>
+        <a href="{% url 'acasa' %}">Inapoi acasa</a>
+    </div>
+    <style>
+        table {
+            border: 1px solid;
+            width: 90%;
+        }
+
+        th, td {
+            border: 1px solid;
+            text-align: center;
+            padding: 5px;
+        }
+
+        th {
+            background-color: #eb4888;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: lightpink;
+        }
+
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 150%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <div style="margin-left: 10%;">
+        <h1 style="margin-left: 38%">Tabela Clienti</h1>
+        <table>
+            <tr>
+                <th>Client</th>
+                <th>Nume Client</th>
+                <th>Nume Utilizator</th>
+                <th>Parola</th>
+                <th>Tip Utilizator</th>
+                <th>Numar telefon</th>
+                <th>Email</th>
+                <th>Adresa</th>
+                <th>Cod postal</th>
+            </tr>
+            {% for client in clienti %}
+                <tr>
+                    <td>{{ client.0 }}</td>
+                    <td>{{ client.1 }}</td>
+                    <td>{{ client.2 }}</td>
+                    <td>{{ client.3 }}</td>
+                    <td>{{ client.4 }}</td>
+                    <td>{{ client.5 }}</td>
+                    <td>{{ client.6 }}</td>
+                    <td>{{ client.7 }}</td>
+                    <td>{{ client.8 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

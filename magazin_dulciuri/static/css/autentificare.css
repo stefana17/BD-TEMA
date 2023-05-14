@@ -1,0 +1,82 @@
+body {
+
+}
+
+/*.login(modifici clasa)
+#login(modifici id)*/
+
+.login {
+    display: block;
+    width: 600px;
+    height: 350px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #cccccc;
+    box-shadow: 2px 2px 2px #cccccc;
+    border-radius: 10px;
+    background-color: white;
+}
+
+form {
+    display: block;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.box {
+    margin-top: 5%;
+}
+
+.inner-box {
+    margin-left: 50px;
+}
+
+label,
+input {
+    align-content: center;
+    width: 100%;
+    font-size: 23px;
+    margin: 5px 0;
+}
+
+input[type="text"],
+input[type="password"] {
+    margin-top: 5%;
+    width: 50%;
+    align-self: center;
+    padding: 8px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+input[type="submit"], #create {
+    width: 30%;
+    background-color: #eb4888; /* schimba culoarea in roz :) */
+    color: #ffffff;
+    font-size: 14px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5%;
+}
+
+#create {
+    width: 50%;
+}
+
+input[type="submit"]:hover, #create:hover {
+    background-color: #eb4888;
+}
+
+.error-popup {
+    font-size: 23px;
+    text-align: center;
+    background-color: #FF0000;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1;
+}
+

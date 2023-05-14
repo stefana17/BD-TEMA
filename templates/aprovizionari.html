@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Aprovizionari {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/aprovizionari.css' %}">
+    </head>
+    <div class="topnav">
+        <a class="active" href="#">Aprovizionari</a>
+        <a href="{% url 'acasa' %}">Inapoi acasa</a>
+    </div>
+    <style>
+        table {
+            border: 1px solid;
+            width: 90%;
+        }
+
+        th, td {
+            border: 1px solid;
+            text-align: center;
+            padding: 5px;
+        }
+
+        th {
+            background-color: #eb4888;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: lightpink;
+        }
+
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 160%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <div style="margin-left: 10%;">
+        <h1 style="margin-left: 38%">Tabela Aprovizionari</h1>
+        <table>
+            <tr>
+                <th>Cantitate aprovizionare</th>
+                <th>Pret aprovizionare</th>
+                <th>Data aprovizionare</th>
+                <th>Produs</th>
+            </tr>
+            {% for aprovizionare in aprovizionari %}
+                <tr>
+                    <td>{{ aprovizionare.0 }}</td>
+                    <td>{{ aprovizionare.1 }}</td>
+                    <td>{{ aprovizionare.2 }}</td>
+                    <td>{{ aprovizionare.3 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

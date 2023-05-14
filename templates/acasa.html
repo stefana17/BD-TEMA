@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Acasa {% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/acasa.css' %}">
+    </head>
+    <div class="topnav">
+        <a class="active" href="#">Produse</a>
+        <a href="{% url 'comenzi' %}">Comenzi</a>
+        <a href="{% url 'clienti' %}">Clienti</a>
+        <a href="{% url 'aprovizionari' %}">Aprovizionari</a>
+        <a href="{% url 'venituri' %}">Venituri</a>
+    </div>
+    <style>
+        table {
+            border: 1px solid;
+            width: 90%;
+        }
+
+        th, td {
+            border: 1px solid;
+            text-align: center;
+            padding: 7px;
+        }
+
+        th {
+            background-color: #eb4888;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: lightpink;
+        }
+
+         body {
+            background-image: url("https://wallpaperaccess.com/full/1986114.jpg");
+            background-size:100% 150%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <div style="margin-left: 10%;">
+        <h1 style="margin-left: 38%">Tabela Produse</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nume produs</th>
+                <th>Pret produs</th>
+                <th>Cantitate disponibila</th>
+                <th>Stergere</th>
+                <th>Aprovizionare</th>
+                <th>Editare</th>
+            </tr>
+            {% for produs in produse %}
+                <tr>
+                    <td>{{ produs.0 }}</td>
+                    <td>{{ produs.1 }}</td>
+                    <td>{{ produs.2 }}</td>
+                    <td>{{ produs.3 }}</td>
+                    <td>
+                        <form method="post" action="{% url 'stergere_produs' produs.0 %}">
+                            {% csrf_token %}
+                            <button type="submit" class="button">Stergere</button>
+                        </form>
+                    </td>
+                    <td><a href="{% url 'adaugare_aprovizionare' produs.0 %}" class="button">Aprovizionare</a></td>
+                    <td><a href="{% url 'editare_produs' produs.0 %}" class="button">Editare</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'adaugare_produs' %}" class="button">Adaugare Produs</a>
+    </div>
+{% endblock %}
